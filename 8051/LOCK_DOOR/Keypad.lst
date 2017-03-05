@@ -1,0 +1,59 @@
+C51 COMPILER V9.56.0.0   KEYPAD                                                            10/08/2016 23:29:17 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE KEYPAD
+OBJECT MODULE PLACED IN Keypad.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Keypad\Keypad.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Keyp
+                    -ad.lst) TABS(2) OBJECT(Keypad.obj)
+
+line level    source
+
+   1          #include "Keypad.h"
+   2          char READ_SWITCHES(void)  
+   3          { 
+   4   1        RowA = 0; RowB = 1; RowC = 1; RowD = 1;   //Test Row A
+   5   1      
+   6   1        if (C1 == 0) { delay_us(10000); while (C1==0); return '1'; }
+   7   1        if (C2 == 0) { delay_us(10000); while (C2==0); return '2'; }
+   8   1        if (C3 == 0) { delay_us(10000); while (C3==0); return '3'; }
+   9   1        if (C4 == 0) { delay_us(10000); while (C4==0); return '/'; }
+  10   1      
+  11   1        RowA = 1; RowB = 0; RowC = 1; RowD = 1;   //Test Row B
+  12   1      
+  13   1        if (C1 == 0) { delay_us(10000); while (C1==0); return '4'; }
+  14   1        if (C2 == 0) { delay_us(10000); while (C2==0); return '5'; }
+  15   1        if (C3 == 0) { delay_us(10000); while (C3==0); return '6'; }
+  16   1        if (C4 == 0) { delay_us(10000); while (C4==0); return 'x'; }
+  17   1        
+  18   1        RowA = 1; RowB = 1; RowC = 0; RowD = 1;   //Test Row C
+  19   1      
+  20   1        if (C1 == 0) { delay_us(10000); while (C1==0); return '7'; }
+  21   1        if (C2 == 0) { delay_us(10000); while (C2==0); return '8'; }
+  22   1        if (C3 == 0) { delay_us(10000); while (C3==0); return '9'; }
+  23   1        if (C4 == 0) { delay_us(10000); while (C4==0); return '-'; }
+  24   1        
+  25   1        RowA = 1; RowB = 1; RowC = 1; RowD = 0;   //Test Row D
+  26   1      
+  27   1        if (C1 == 0) { delay_us(10000); while (C1==0); return 'C'; }
+  28   1        if (C2 == 0) { delay_us(10000); while (C2==0); return '0'; }
+  29   1        if (C3 == 0) { delay_us(10000); while (C3==0); return '='; }
+  30   1        if (C4 == 0) { delay_us(10000); while (C4==0); return '+'; }
+  31   1      
+  32   1        return 'n';             // Means no key has been pressed
+  33   1      }
+  34          
+  35          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    291    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
