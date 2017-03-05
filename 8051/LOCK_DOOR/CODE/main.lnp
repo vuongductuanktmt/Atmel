@@ -1,0 +1,9 @@
+"main.obj",
+"lcd_16x2.obj",
+"delay.obj",
+"i2c.obj",
+"24cxx.obj",
+"Keypad.obj",
+"DS1307.obj" 
+TO "main" 
+RAMSIZE(256) 

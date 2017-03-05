@@ -1,0 +1,92 @@
+C51 COMPILER V9.56.0.0   LCD_16X2                                                          10/08/2016 23:29:16 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE LCD_16X2
+OBJECT MODULE PLACED IN lcd_16x2.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE lcd\lcd_16x2.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\lcd_1
+                    -6x2.lst) TABS(2) OBJECT(lcd_16x2.obj)
+
+line level    source
+
+   1          #include "lcd_16x2.h"
+   2          //Tao Xung
+   3           void LCDWriteCmd(unsigned char c) //CT con ghi du lieu len LCD
+   4           {
+   5   1        LCD_PORT = c;
+   6   1        RS = 0;
+   7   1        RW = 0;
+   8   1        EN = 1;
+   9   1        delay_ms(5);
+  10   1        EN = 0;
+  11   1      
+  12   1       }
+  13           //==============================
+  14          void LCDWriteData(unsigned char c) //CT con doc du lieu tu LCD
+  15           {
+  16   1        LCD_PORT = c;
+  17   1        RS = 1;
+  18   1        RW = 0;
+  19   1        EN = 1;
+  20   1        delay_ms(1);
+  21   1        EN = 0;
+  22   1      
+  23   1       }
+  24           //=============================
+  25          void LCDcursorxy(unsigned char x, unsigned char y) {
+  26   1        if ((x < 1 || x > 2) && (y < 1 || y > 16)) {
+  27   2         x = 1;
+  28   2         y = 1;
+  29   2        }
+  30   1        if (x == 1)
+  31   1         LCDWriteCmd(0x7F + y);
+  32   1        else
+  33   1         LCDWriteCmd(0xBF + y);
+  34   1       }
+  35           //===============================
+  36          void LCD_init() // Khoi tao LCD
+  37           {
+  38   1        delay_ms(5);
+  39   1        LCDWriteCmd(0x3c); // 8-bit data , 2 lines & 5x8 matrix   
+  40   1        delay_ms(1);
+  41   1        LCDWriteCmd(0x0C); // Display On cursor blinking  
+  42   1        delay_ms(1);
+  43   1        LCDWriteCmd(0x01); // clear LCD
+  44   1        delay_ms(10);
+  45   1        LCDWriteCmd(0x06); // increment cursor (shift cursor to right)
+  46   1        delay_ms(1);
+  47   1       }
+  48           //================================
+  49          void LCD_Clear() {
+  50   1        LCDWriteCmd(0x01);
+  51   1        delay_ms(20);
+  52   1       }
+  53           //===============================
+  54           //=============================
+C51 COMPILER V9.56.0.0   LCD_16X2                                                          10/08/2016 23:29:16 PAGE 2   
+
+  55          void LCD_putstr(unsigned char * s) {
+  56   1       while ( * s) {
+  57   2        LCDWriteData( * s);
+  58   2        s++;
+  59   2        delay_ms(5);
+  60   2       }
+  61   1      }
+  62          
+  63          
+  64          
+  65          
+  66          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    194    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
